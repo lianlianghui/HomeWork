@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .box{
+            width:1210px ;
+            margin:0 auto;
+        }
+        .box .subnav{
+            width: 38px;
+            position: fixed;
+            left:50%;
+            margin-left: 605px;
+            top:30%;
+        }
+        .box .list li,.back{
+            height: 36px;
+            border:1px solid #DEDEDE;
+            margin-bottom: 5px;
+            font-size: 0px;
+            background: url("imagesJD/bg.png") no-repeat;
+            text-align: center;
+            line-height: 36px;
+        }
+        .list li.cur,.back{
+            background: pink;
+            color: #000;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="top"><img src="imagesJD/top.png" ></div>
+        <div class="jia main"  data-js="1楼"><img src="imagesJD/jia.png" ></div>
+        <div class="dian main" data-js="2楼"><img src="imagesJD/dian.png" ></div>
+        <div class="fu main"   data-js="3楼"><img src="imagesJD/fu.png" ></div>
+        <div class="mei main"  data-js="4楼"><img src="imagesJD/mei.png" ></div>
+        <div class="bottom"><img src="imagesJD/bottom.png" ></div>
+
+        <div class="subnav">
+            <ul class="list">
+                <li>1楼</li>
+                <li>2楼</li>
+                <li>3楼</li>
+                <li>4楼</li>
+            </ul>
+            <div class="back">返回</div>
+        </div>
+    </div>
+
+    <script src="jquery-1.11.1.js"></script>
+
+    <script>
+        $(window).scroll(function () {
+            var H = $(document).scrollTop();  //获取滚动距离
+
+
+            if(H>=$(".bottom").offset().top)   //尾部返回
+            {
+               $(".back").addClass("back");
+                $(".list li").removeClass("cur");
+            }
+            else if(H>=$(".mei").offset().top)   //4楼
+            {
+                $(".list li").eq(3).addClass("cur").siblings().removeClass("cur");
+            }
+            else if(H>=$(".fu").offset().top) //3楼
+            {
+                $(".list li").eq(2).addClass("cur").siblings().removeClass("cur");
+            }
+            else if(H>=$(".dian").offset().top)  //2楼
+            {
+                $(".list li").eq(1).addClass("cur").siblings().removeClass("cur");
+            }
+            else if(H>=$(".jia").offset().top)  //1楼
+            {
+                $(".list li").eq(0).addClass("cur").siblings().removeClass("cur");
+            }
+            else if(H > 0)
+            {
+                $(".subnav").fadeIn();
+            }
+            else
+            {
+                $(".subnav").fadeOut();
+            }
+
+            $(".back").on("click",function () {
+                $("html,body").stop().animate({
+                    //"scrollTop":0
+                    scrollTop:$(".top").offset().top
+                },600)
+            });
+
+            $(".list li").on("click",function () {
+                var index=$(this).index();
+                $("html,body").stop().animate({
+                    scrollTop:$(".main").eq(index).offset().top
+                })
+            })
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 100%;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        .box .container{
+            width: 800px;
+            height: 350px;
+            margin: auto;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+        .box .container .left{
+            width: 100px;
+            height: 350px;
+            background: #1569CC;
+            float: left;
+        }
+        .box .container .left span{
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .box .container .right{
+            float: left;
+            width: 690px;
+            height: 100%;
+            overflow: hidden;
+            text-align: left;
+            padding-left: 10px;
+        }
+        .box .container .right p{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <div class="container">
+        <div class="left">
+            <span href="">家电</span>
+            <span href="">手机</span>
+            <span href="">电脑</span>
+            <span href="">家居</span>
+            <span href="">男装</span>
+            <span href="">美妆</span>
+            <span href="">汽车</span>
+        </div>
+        <div class="right">
+            <p display="block">111111111111111111</p>
+            <p>222222222222222222</p>
+            <p>33333333333333333333</p>
+            <p>4444444444444444444444</p>
+            <p>55555555555555555555</p>
+            <p>6666666666666666666</p>
+            <p>77777777777777777777</p>
+        </div>
+    </div>
+</div>
+
+<script src="jquery-1.11.1.js"></script>
+<script>
+    var btn=$('.box .container .left span');
+    btn.mouseenter(function () {
+        var that=$(this).index();
+        $(".right p").hide().eq(that).show();
+    })
+
+
+</script>
+
+</body>
+</html>
